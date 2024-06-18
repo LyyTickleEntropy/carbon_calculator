@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lifestyle Carbon Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Carbon Emission Calculator</h1>
+        <div class="content">
+            <div class="input-area">
+                <form method="post">
+                    <label for="transportation">Transportation (km):</label>
+                    <input type="number" name="transportation" id="transportation" step="0.01"><br>
+                    
+                    <label for="energy">Home Energy Use (kWh):</label>
+                    <input type="number" name="energy" id="energy" step="0.01"><br>
+                    
+                    <label for="dietary">Dietary (kcal):</label>
+                    <input type="number" name="dietary" id="dietary" step="0.01"><br>
+                    
+                    <label for="goods">Goods Consumption (kg):</label>
+                    <input type="number" name="goods" id="goods" step="0.01"><br>
+                    
+                    <label for="waste">Waste Management (kg):</label>
+                    <input type="number" name="waste" id="waste" step="0.01"><br>
+                    
+                    <label for="other">Other (kg CO2):</label>
+                    <input type="number" name="other" id="other" step="0.01"><br>
+                    
+                    <input type="submit" value="Calculate">
+                </form>
+                {% if error_message %}
+                    <div class="error-message">{{ error_message }}</div>
+                {% endif %}
+            </div>
+            {% if show_result %}
+                <div class="result-area">
+                    <h2>Carbon Emission Report</h2>
+                    <p><strong>Date:</strong> {{ current_date }}</p>
+                    <p><strong>Your Carbon Emission:</strong> <span class="carbon-value">{{ carbon_emission }} kg CO2</span></p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
